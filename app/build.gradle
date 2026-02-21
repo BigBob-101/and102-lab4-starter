@@ -22,7 +22,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "API_KEY", "\"wm19WnZfVgXW6nhLS6zFc4HgeALWJklieRzo3Daf\"")
+        buildConfigField("String", "API_KEY", "\"a07e22bc18f5cb106bfe4cc1f83ad8ed\"")
     }
 
     buildTypes {

@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 @Keep
 @Serializable
 data class CampgroundResponse(
-    @SerialName("data")
+    @SerialName("results")
     val data: List<Campground>?
 )
 
@@ -16,18 +16,24 @@ data class CampgroundResponse(
 @Keep
 @Serializable
 data class Campground(
-    @SerialName("name")
+    @SerialName("title")
     val name: String?,
-    @SerialName("description")
+    @SerialName("overview")
     val description: String?,
-    @SerialName("latLong")
-    val latLong: String?,
-    @SerialName("images")
-    val images: List<CampgroundImage>?
+    @SerialName("poster_path")
+    val posterPath: String?,
+    @SerialName("backdrop_path")
+    val backdropPath: String?
 ) : java.io.Serializable {
-    // Convenience property to easily get the first image URL if it exists
-    val imageUrl: String
-        get() = images?.firstOrNull { !it.url.isNullOrEmpty() }?.url ?: ""
+    val posterImageUrl: String
+        get() = if (!posterPath.isNullOrEmpty())
+            "https://image.tmdb.org/t/p/w500$posterPath"
+        else ""
+
+    val backdropImageUrl: String
+        get() = if (!backdropPath.isNullOrEmpty())
+            "https://image.tmdb.org/t/p/w780$backdropPath"
+        else ""
 }
 
 

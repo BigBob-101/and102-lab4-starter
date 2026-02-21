@@ -44,18 +44,17 @@ class CampgroundAdapter(private val context: Context, private val campgrounds: L
             // TODO: Set item views based on views and data model
             nameTextView.text = campground.name
             descriptionTextView.text = campground.description
-            locationTextView.text = campground.latLong
+            locationTextView.visibility = View.GONE
 
             Glide.with(context)
-                .load(campground.imageUrl)
+                .load(campground.posterImageUrl) // updated
+                .centerCrop()
                 .into(imageView)
         }
 
         override fun onClick(v: View?) {
-            // TODO: Get selected campground
             val campground = campgrounds[absoluteAdapterPosition]
 
-            // TODO: Navigate to Details screen and pass selected campground
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra(CAMPGROUND_EXTRA, campground)
             context.startActivity(intent)

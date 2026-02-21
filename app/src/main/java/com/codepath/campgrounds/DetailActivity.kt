@@ -1,6 +1,7 @@
 package com.codepath.campgrounds
 
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -32,11 +33,12 @@ class DetailActivity : AppCompatActivity() {
         // TODO:  Set the name, location, and description information
         campgroundNameTV.text = campground.name
         campgroundDescriptionTV.text = campground.description
-        campgroundLatLongTV.text = campground.latLong
+        campgroundLatLongTV.visibility = View.GONE
 
         // TODO: Load the image using Glide
         Glide.with(this)
-            .load(campground.imageUrl)
+            .load(campground.posterImageUrl)
+            .centerCrop()
             .into(campgroundImageIV)
     }
 }
